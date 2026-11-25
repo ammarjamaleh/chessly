@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            Welcome to <span class="brand-chess">Chess</span><span class="brand-ly">ly</span>
+        </h1>
+        <p class="lead text-muted">Your premier chess platform for strategy, competition, and mastery</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="feature-card text-center h-100">
+                <div class="feature-icon">♔</div>
+                <h3 class="h4 mb-3">Play Chess</h3>
+                <p class="text-muted mb-4">Challenge players from around the world in real-time matches</p>
+                <a href="/play" class="btn btn-primary">Start Game</a>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-card text-center h-100">
+                <div class="feature-icon">📊</div>
+                <h3 class="h4 mb-3">View Statistics</h3>
+                <p class="text-muted mb-4">Track your progress, ratings, and game history</p>
+                <a href="/stats" class="btn btn-primary">Your Stats</a>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-card text-center h-100">
+                <div class="feature-icon">🏆</div>
+                <h3 class="h4 mb-3">Tournaments</h3>
+                <p class="text-muted mb-4">Compete in tournaments and climb the leaderboards</p>
+                <a href="/tournaments" class="btn btn-primary">Join Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <h2 class="card-title h4 mb-4">Your Chess Journey</h2>
+            <div class="row text-center">
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="display-6 fw-bold text-primary">0</div>
+                    <div class="text-muted">Games Played</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="display-6 fw-bold text-success">0</div>
+                    <div class="text-muted">Wins</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="display-6 fw-bold text-warning">0</div>
+                    <div class="text-muted">Current Rating</div>
+                </div>
+                <div class="col-6 col-md-3 mb-3">
+                    <div class="display-6 fw-bold text-info">0</div>
+                    <div class="text-muted">Tournaments</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}Play Chess{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="text-center mb-5">Play Chess</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-4">Choose Your Opponent</h3>
+                    
+                    <form action="/new_game" method="post">
+                        <div class="mb-4 text-center">
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" name="opponent" id="ai" value="ai" checked>
+                                <label class="form-check-label h5" for="ai">🤖 Play vs AI</label>
+                            </div>
+                            <div class="form-check form-check-inline mb-3">
+                                <input class="form-check-input" type="radio" name="opponent" id="friend" value="friend">
+                                <label class="form-check-label h5" for="friend">👤 Challenge Friend</label>
+                            </div>
+                        </div>
+                        
+                        <div id="friend-section" class="mb-4" style="display: none;">
+                            <label for="friend-select" class="form-label">Select Friend</label>
+                            <select class="form-control" id="friend-select" name="friend_id">
+                                <option value="">-- Select a friend --</option>
+                            </select>
+                            <div class="text-center mt-2">
+                                <a href="/friends" class="text-decoration-none">Manage Friends</a>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">Start Game</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const aiRadio = document.getElementById('ai');
+    const friendRadio = document.getElementById('friend');
+    const friendSection = document.getElementById('friend-section');
+    
+    aiRadio.addEventListener('change', function() {
+        friendSection.style.display = 'none';
+    });
+    
+    friendRadio.addEventListener('change', function() {
+        friendSection.style.display = 'block';
+    });
+});
+</script>
+{% endblock %}

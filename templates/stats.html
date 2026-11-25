@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}My Stats{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">My Statistics</h1>
+    
+    <div class="row mb-5">
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-value text-primary">{{ stats.current_rating }}</div>
+                <div class="stat-label">Current Rating</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-value text-success">{{ stats.wins }}</div>
+                <div class="stat-label">Wins</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-value text-danger">{{ stats.losses }}</div>
+                <div class="stat-label">Losses</div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="stat-card">
+                <div class="stat-value text-warning">{{ stats.draws }}</div>
+                <div class="stat-label">Draws</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h4 class="mb-3">Recent Games</h4>
+                    
+                    {% if recent_games %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Game ID</th>
+                                        <th>Opponent</th>
+                                        <th>Result</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for game in recent_games %}
+                                        <tr>
+                                            <td><a href="/game/{{ game.id }}">#{{ game.id }}</a></td>
+                                            <td>
+                                                {% if game.white_player_id == session.user_id %}
+                                                    {{ game.black_player_id }}
+                                                {% else %}
+                                                    {{ game.white_player_id }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if game.result %}
+                                                    {% if (game.result == 'white' and game.white_player_id == session.user_id) or 
+                                                          (game.result == 'black' and game.black_player_id == session.user_id) %}
+                                                        <span class="badge bg-success">Win</span>
+                                                    {% elif game.result == 'draw' %}
+                                                        <span class="badge bg-warning">Draw</span>
+                                                    {% else %}
+                                                        <span class="badge bg-danger">Loss</span>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <span class="badge bg-info">In Progress</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ game.played_at }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted text-center">No recent games</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h4 class="mb-3">Quick Stats</h4>
+                    <div class="mb-3">
+                        <strong>Total Games:</strong> {{ stats.total_games }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Win Rate:</strong> 
+                        {% if stats.total_games > 0 %}
+                            {{ ((stats.wins / stats.total_games) * 100) | round(1) }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Highest Rating:</strong> {{ stats.highest_rating }}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="/leaderboard" class="btn btn-outline-primary">View Leaderboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

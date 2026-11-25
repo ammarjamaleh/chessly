@@ -1,0 +1,305 @@
+/* 
+Chessly - Main Stylesheet
+Author: Ammar Jamaleh
+Note: This file was created with AI assistance
+*/
+
+/* Main page styling with dark theme and chess background */
+body {
+    background: 
+        linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98)),
+        url('/static/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    color: #e2e8f0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Subtle chessboard pattern in the background */
+.chess-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, rgba(30, 41, 59, 0.2) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(30, 41, 59, 0.2) 25%, transparent 25%);
+    background-size: 60px 60px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Brand name styling - "Chess" part with blue gradient */
+.brand-chess {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Brand name styling - "ly" part in gold */
+.brand-ly {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+/* Special styling for register button */
+.btn-register {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-color: #f59e0b !important;
+}
+
+/* Feature cards on the homepage */
+.feature-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Custom alert styling */
+.alert-custom {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(245, 158, 11, 0.15));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form input styling */
+.form-control {
+    background: rgba(15, 23, 42, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+}
+
+.form-control:focus {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: #3b82f6;
+    color: #ffffff;
+}
+
+.form-control::placeholder {
+    color: #94a3b8;
+}
+
+/* Footer styling */
+.footer {
+    background: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa 0%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Chess board styling - created with AI assistance */
+.chess-board {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border: 3px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chess-row {
+    display: flex;
+    height: 12.5%;
+}
+
+.chess-square {
+    width: 12.5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chess-square.light {
+    background-color: #f0d9b5;
+}
+
+.chess-square.dark {
+    background-color: #b58863;
+}
+
+.chess-square:hover {
+    background-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Coordinate labels on chess board */
+.coordinate {
+    position: absolute;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+.coordinate.file {
+    bottom: 2px;
+    right: 4px;
+}
+
+.coordinate.rank {
+    top: 2px;
+    left: 4px;
+}
+
+/* Move history panel */
+.move-history {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.move-pair {
+    display: flex;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.move-number {
+    min-width: 30px;
+    color: #94a3b8;
+}
+
+.move {
+    padding: 2px 8px;
+    margin: 0 4px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.move:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile chess board adjustments */
+@media (max-width: 576px) {
+    .chess-board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .chess-square {
+        font-size: 20px;
+    }
+}
+
+/* Game list items */
+.game-list {
+    list-style: none;
+    padding: 0;
+}
+
+.game-item {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Leaderboard table */
+.leaderboard-table {
+    width: 100%;
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 100px;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-row:last-child {
+    border-bottom: none;
+}
+
+/* Statistics grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+.text-muted {
+    color: #cbd5e1 !important;
+}
+
+.footer .text-muted {
+    color: #a0aec0 !important;
+}
+
+.form-text {
+    color: #a0aec0 !important;
+}
+
+.text-dark { 
+    color: #e2e8f0 !important; 
+}
+
+.text-black { 
+    color: #e2e8f0 !important; 
+}
+
+.card-text { 
+    color: #e2e8f0 !important; 
+}
+
+small { 
+    color: #a0aec0 !important; 
+}

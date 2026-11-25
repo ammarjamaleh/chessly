@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">Leaderboard</h1>
+    
+    <div class="card border-0 shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Rating</th>
+                            <th>Games</th>
+                            <th>Wins</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for player in players %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    {% if loop.index == 1 %}
+                                        🥇
+                                    {% elif loop.index == 2 %}
+                                        🥈
+                                    {% elif loop.index == 3 %}
+                                        🥉
+                                    {% endif %}
+                                    {{ player.username }}
+                                </td>
+                                <td><strong>{{ player.current_rating }}</strong></td>
+                                <td>{{ player.total_games }}</td>
+                                <td>{{ player.wins }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">No players found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="/stats" class="btn btn-outline-primary">View My Stats</a>
+        <a href="/play" class="btn btn-primary">Play Now</a>
+    </div>
+</div>
+{% endblock %}

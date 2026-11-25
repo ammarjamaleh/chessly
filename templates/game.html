@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block title %}Game {{ game.id }}{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Game #{{ game.id }}</h1>
+        <a href="/history" class="btn btn-outline-secondary">← Back to Games</a>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">Chess Board</h3>
+                    
+                    <div class="chess-board mb-4">
+                        {% for row in range(8) %}
+                            <div class="chess-row">
+                                {% for col in range(8) %}
+                                    {% set square_number = row * 8 + col %}
+                                    {% set is_light = (row + col) % 2 == 0 %}
+                                    <div class="chess-square {{ 'light' if is_light else 'dark' }}">
+                                        {% if row == 7 %}
+                                            <div class="coordinate file">{{ ['a','b','c','d','e','f','g','h'][col] }}</div>
+                                        {% endif %}
+                                        {% if col == 0 %}
+                                            <div class="coordinate rank">{{ 8 - row }}</div>
+                                        {% endif %}
+                                        
+                                        {% if row == 0 %}
+                                            {% if col == 0 or col == 7 %}♜{% endif %}
+                                            {% if col == 1 or col == 6 %}♞{% endif %}
+                                            {% if col == 2 or col == 5 %}♝{% endif %}
+                                            {% if col == 3 %}♛{% endif %}
+                                            {% if col == 4 %}♚{% endif %}
+                                        {% endif %}
+                                        {% if row == 1 %}
+                                            ♟
+                                        {% endif %}
+                                        {% if row == 6 %}
+                                            ♙
+                                        {% endif %}
+                                        {% if row == 7 %}
+                                            {% if col == 0 or col == 7 %}♖{% endif %}
+                                            {% if col == 1 or col == 6 %}♘{% endif %}
+                                            {% if col == 2 or col == 5 %}♗{% endif %}
+                                            {% if col == 3 %}♕{% endif %}
+                                            {% if col == 4 %}♔{% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <form action="/move" method="post" class="text-center">
+                        <input type="hidden" name="game_id" value="{{ game.id }}">
+                        <div class="mb-3">
+                            <input type="text" class="form-control w-50 mx-auto" name="move" placeholder="Enter move (e.g., e2e4)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Make Move</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow mb-4">
+                <div class="card-body">
+                    <h4>Game Info</h4>
+                    <div class="mb-2">
+                        <strong>White:</strong> {{ white.username }}
+                    </div>
+                    <div class="mb-2">
+                        <strong>Black:</strong> {{ black.username }}
+                    </div>
+                    <div class="mb-2">
+                        <strong>Status:</strong> 
+                        <span class="badge bg-info">{{ game.status }}</span>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Started:</strong> {{ game.created_at }}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h4>Moves</h4>
+                    <div class="moves-list">
+                        {% if game.moves %}
+                            <div class="move-history">
+                                {% set moves = game.moves.split() %}
+                                {% for i in range(0, moves|length, 2) %}
+                                    <div class="move-pair">
+                                        <span class="move-number">{{ i//2 + 1 }}.</span>
+                                        <span class="move">{{ moves[i] }}</span>
+                                        {% if i + 1 < moves|length %}
+                                            <span class="move">{{ moves[i + 1] }}</span>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="text-muted">No moves yet</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

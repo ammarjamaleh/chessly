@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block title %}Tournaments{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">Tournaments</h1>
+    
+    <div class="text-end mb-4">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTournamentModal">
+            + Create Tournament
+        </button>
+    </div>
+    
+    <ul class="nav nav-tabs mb-4" id="tournamentTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming">
+                Upcoming
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="ongoing-tab" data-bs-toggle="tab" data-bs-target="#ongoing">
+                Ongoing
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past">
+                Past
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="my-tab" data-bs-toggle="tab" data-bs-target="#my-tournaments">
+                My Tournaments
+            </button>
+        </li>
+    </ul>
+    
+    <div class="tab-content" id="tournamentContent">
+        <div class="tab-pane fade show active" id="upcoming" role="tabpanel">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title mb-0">Winter Chess Open</h5>
+                                <span class="badge bg-warning">Upcoming</span>
+                            </div>
+                            <p class="card-text text-muted">Join our seasonal tournament for all skill levels!</p>
+                            <div class="mb-2">
+                                <small><strong>Format:</strong> Swiss</small>
+                            </div>
+                            <div class="mb-2">
+                                <small><strong>Start:</strong> Dec 25, 2025</small>
+                            </div>
+                            <div class="mb-3">
+                                <small><strong>Players:</strong> 12/50</small>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-outline-primary">Join Tournament</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="ongoing" role="tabpanel">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card border-0 shadow h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title mb-0">Fall Championship</h5>
+                                <span class="badge bg-success">Round 2/5</span>
+                            </div>
+                            <p class="card-text text-muted">Professional chess tournament with prize pool.</p>
+                            <div class="mb-2">
+                                <small><strong>Format:</strong> Round Robin</small>
+                            </div>
+                            <div class="mb-2">
+                                <small><strong>Started:</strong> Nov 1, 2025</small>
+                            </div>
+                            <div class="mb-2">
+                                <small><strong>Ends:</strong> Nov 30, 2025</small>
+                            </div>
+                            <div class="mb-3">
+                                <small><strong>Players:</strong> 24</small>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary">View Bracket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="past" role="tabpanel">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tournament</th>
+                                    <th>Winner</th>
+                                    <th>Format</th>
+                                    <th>Date</th>
+                                    <th>Players</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Summer Cup 2025</td>
+                                    <td>grandmaster123</td>
+                                    <td>Swiss</td>
+                                    <td>Aug 2025</td>
+                                    <td>48</td>
+                                </tr>
+                                <tr>
+                                    <td>Spring Invitational</td>
+                                    <td>chesspro99</td>
+                                    <td>Elimination</td>
+                                    <td>Apr 2025</td>
+                                    <td>32</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="my-tournaments" role="tabpanel">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h5 class="mb-3">My Tournament History</h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tournament</th>
+                                    <th>Status</th>
+                                    <th>My Rank</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Fall Championship</td>
+                                    <td><span class="badge bg-success">Ongoing</span></td>
+                                    <td>12th</td>
+                                    <td>3.5/7</td>
+                                </tr>
+                                <tr>
+                                    <td>Summer Cup 2025</td>
+                                    <td><span class="badge bg-secondary">Finished</span></td>
+                                    <td>24th</td>
+                                    <td>4/9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}Game History{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">Game History</h1>
+    
+    {% if games %}
+        <div class="list-group">
+            {% for game in games %}
+                <a href="/game/{{ game.id }}" class="list-group-item list-group-item-action game-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">Game #{{ game.id }}</h5>
+                            <p class="mb-1">
+                                {{ game.white_username }} vs {{ game.black_username }}
+                                {% if game.result %}
+                                    • Result: {{ game.result }}
+                                {% endif %}
+                            </p>
+                            <small class="text-muted">{{ game.played_at }}</small>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary">View</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        
+        {% if pages > 1 %}
+            <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page > 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page - 1 }}">Previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for p in range(1, pages + 1) %}
+                        <li class="page-item {% if p == page %}active{% endif %}">
+                            <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% endfor %}
+                    
+                    {% if page < pages %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-info text-center">
+            <p class="mb-0">You haven't played any games yet.</p>
+            <a href="/play" class="btn btn-primary mt-3">Start Your First Game</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
